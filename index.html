@@ -1,0 +1,172 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+   <!-- 此源码来自网络，由 石哥电脑 www.DLedu.cn 整理收集，版权归原作者所有！！！-->
+  <title>坤个人主页</title> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"> 
+  <script src="js/jquery.min.js"></script> 
+  <script src="js/layer.js"></script> 
+  <script src="js/clipboard.min.js" type="text/javascript"></script> 
+  <link rel="stylesheet" type="text/css" href="css/font_2405177_s4jhykup4
+  y.css"> 
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css"> 
+  <link rel="stylesheet" type="text/css" href="css/person.css"> 
+  <style type="text/css">
+        .foot {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        height: 50px;
+        color: #474747;
+        border-top: 1px solid #eee;
+        background-color: #fff;
+        justify-content: space-around;
+        z-index: 10;
+    }
+
+    .foot a{
+        display: block;
+        text-decoration: none;
+    }
+    .foot .text-center{
+        flex: 1;
+        font-size: 16px;
+        color: #767676;
+        line-height: 50px;
+        text-align: center;
+        padding: 0 10px;
+    }
+
+    img.menu_img {
+        width: 100%;
+        height: 100%;
+    }
+
+    .foot a.active {
+        color: #000;
+        font-weight: bold;
+    }
+
+    </style> 
+ </head> 
+ <body> 
+  <div class="body-container"> 
+   <div class="top-bg-container"> 
+    <div class="like-container"> 
+    
+    </div> 
+    <img class="bg-img" src="images/32183e93a6bcbb8662ec01de707c5af9.jpeg"> 
+   <!-- 此源码来自网络，由 石哥电脑 www.DLedu.cn 整理收集，版权归原作者所有！！！-->
+    
+   </div> 
+   <div class="content-container"> 
+    <div class="person-container"> 
+     <div class="person-head-img"> 
+      <img class="head-img" src="./images/sgdn.png"> 
+      <img class="sex" src="images/sex1.png"> 
+     </div> 
+     <b class="nickname">坤</b> 
+     <span class="summary">这个人很懒，什么都没有留下</span> 
+	 <br>
+
+    </div> 
+    <div class="nav_container"> 
+    </div> 
+    <div class="app-container"> 
+    	
+      <a href="weixin.html" class="app-item-box" target="_self"> 
+      <div class="app-item-icon"> 
+       <img src="images/1.png"> 
+      </div> <span class="app-item-txt">微信</span> </a> 
+     
+     
+      
+     
+      
+      
+     <div class="nav_container" style="text-align:center;color:#888888;display: block;">
+      <div class="footer"><!-- 底部版权 -->
+          <br>一切都在无可挽回地走向庸俗 <br>王小波</a>
+				<br>
+			</div>
+     </div> 
+    </div> 
+    <script type="text/javascript">
+	   <!-- 此源码来自网络，由 石哥电脑 www.DLedu.cn 整理收集，版权归原作者所有！！！-->
+
+    $(function () {
+        // 判断是否为ios设备
+        if (navigator.userAgent.match(/(iPod|iPhone|iPad)/)){
+            //alert('苹果自带浏览器');
+            $('#ios-bottom').height('130px');
+        }
+   <!-- 此源码来自网络，由 石哥电脑 www.DLedu.cn 整理收集，版权归原作者所有！！！-->
+        $(document).on('click', '.changeContainer', function () {
+            $(".changeContainer").removeClass('blue-border');
+            const item = $(this).attr('data-item');
+            if (item == 'app'){
+
+                $(this).addClass('blue-border');
+                $(".article-container").slideUp();
+                $(".app-container").slideDown();
+            }else {
+
+                $(this).addClass('blue-border');
+                $(".app-container").slideUp();
+                $(".article-container").slideDown();
+            }
+        });
+        
+       // 单击视频播放
+            $(document).on('click', '.videoview', function () {
+                var that = $(this).find('video')
+                if ($(that)[0].paused) {
+                    // console.log(0);
+                    $('video').trigger('pause');
+                    $(that).trigger('play');
+                    $(that).siblings("#play-icon").remove();
+                } else {
+                    // console.log(1);
+                    $(that).trigger('pause');
+                    var html = playHtml();
+                    $(that).before(html);
+                }
+            });
+    });
+    
+    function doCopyUrl(id){
+        let vm=this;
+        var clipboard = new Clipboard("#doCopyValue_"+id);
+        clipboard.on('success', function(e) {
+            layer.msg("复制 微信号 成功，请在微信搜索微信号：lll1kkk");
+            clipboard.destroy();
+        });
+        clipboard.on('error', function(e) {
+            alert("复制失败");
+            console.log(e);
+        });
+    }
+
+    function doLike(id){
+        $.ajax({
+            url: "/index/index/like",
+            type: 'POST',
+            dataType: 'JSON',
+            data: {uid:"1",id:id},
+            complete: function (XMLHttpRequest, textStatus) {
+
+            },
+            success: function (data) {
+                if (data.status == 1) {
+                    layer.msg(data.message);
+                    window.location.href='/index/index/index/uid/1/view/sj?page=';
+                } else {
+                    layer.alert(data.message);
+                }
+            }
+        });
+    }
+</script> 
+   </div>
+  </div>
+    <!-- 此源码来自网络，由 石哥电脑 www.DLedu.cn 整理收集，版权归原作者所有！！！-->
+</body></html>
